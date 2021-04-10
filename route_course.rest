@@ -1,0 +1,35 @@
+GET http://localhost:3000/courseDetails
+// to get all user detail
+###
+
+GET http://localhost:3000/courseDetails/60707e43c1d73d2f2498b226
+// to get one user detail, base on the ID behind the URL
+###
+
+POST http://localhost:3000/courseDetails
+Content-Type: application/json
+
+{
+    "course_tableid": "3",
+    "course_title": "How to be a Chef",
+    "course_desc": "Cook is simple, just like 123",
+    "course_fee": "150",
+    "course_duration": "10-May-2021 to 12-May-2021",
+    "course_vendor": "Smelly Chef"
+}
+// to insert one user detail, random id will be given.
+###
+
+PATCH http://localhost:3000/courseDetails/607080c68c63664bb4850332
+Content-Type: application/json
+
+{
+    "course_title": "How to do a project",
+    "course_vendor": "Amaze"
+}
+
+// to update one user detail by id, change the id behind URL to update that ID.
+###
+
+DELETE http://localhost:3000/courseDetails/607080c68c63664bb4850332
+// to delete one user by id, change the id behind the URL to delete that ID.

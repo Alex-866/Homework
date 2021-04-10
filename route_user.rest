@@ -1,0 +1,33 @@
+GET http://localhost:3000/userDetails
+// to get all user detail
+###
+
+GET http://localhost:3000/userDetails/60707666cf335447289c1a4c
+// to get one user detail, base on the ID behind the URL
+###
+
+POST http://localhost:3000/userDetails
+Content-Type: application/json
+
+{
+    "name": "Kaizer",
+    "ic_number": "T184295689",
+    "email": "adkfskd@gmail.com",
+    "mobile": "91226897"
+}
+// to insert one user detail, random id will be given.
+###
+
+PATCH http://localhost:3000/userDetails/60707666cf335447289c1a4c
+Content-Type: application/json
+
+{
+    "name": "Giselle",
+    "email": "maze@gmail.com"
+}
+
+// to update one user detail by id, change the id behind URL to update that ID.
+###
+
+DELETE http://localhost:3000/userDetails/607077ecbfb4414074eef72f
+// to delete one user by id, change the id behind the URL to delete that ID.
