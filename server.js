@@ -15,8 +15,8 @@ mongoose.connect(dbURI)
 app.use(express.json());
 
 
-const userDetailsRouter = require('userDetails');
-app.use('/userDetails', userDetailsRouter);
+/* const userDetailsRouter = require('userDetails');
+app.use('/userDetails', userDetailsRouter); */
 
 // mongoose and mongo sandbox routes
 /* const UserDetail = require('./models/userDetail');
@@ -36,7 +36,7 @@ app.use('/userDetails', userDetailsRouter);
         });
 }); */
 
-/* const UserDetail = require('./models/userDetail');
+const UserDetail = require('userDetail');
 app.get('/all-user', (req, res) =>{
     UserDetail.find() 
         .then ((result) => {
@@ -46,7 +46,7 @@ app.get('/all-user', (req, res) =>{
             console.log(err);
         });
         
-}); */
+});
 
 /* const UserDetail = require('./models/userDetail');
 app.get('/single-user', (req, res) =>{
