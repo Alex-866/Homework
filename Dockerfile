@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 MAINTAINER alex.chan9923@gmail.com
-EXPOSE 3000
+EXPOSE 8080
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Singapore
 

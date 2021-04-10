@@ -28,8 +28,5 @@ const userDetailSchema = new mongoose.Schema({
 
 
 });
-// { timestamp: true });
-     // this timestamp will automatic generate a time for the creation.
-
 
 module.exports = mongoose.model('userD', userDetailSchema);

@@ -1,4 +1,3 @@
-// require('dotenv').config();
 
 const express = require('express');
 const app = express();
@@ -9,18 +8,14 @@ mongoose.set('useUnifiedTopology', true);
 // Connect to database - mongoDB
 const dbURI = 'mongodb+srv://DadKid:6zUdIePh2hp0rIdu@cluster0.32o67.mongodb.net/DevOps_HomeWork?retryWrites=true&w=majority';
 mongoose.connect(dbURI)
-    .then (() => app.listen(3000, () => console.log('DataBase connected and Server Started')))
+    .then (() => app.listen(8080, () => console.log('DataBase connected and Server Started')))
     // .then ((result) => console.log('DataBase connected')) // use this line to test whether is it connected to db before join app.listen together.
     .catch ((err) => console.log(err));
 
 app.use(express.json());
 
-const courseDetailsRouter = require('./routes/courseDetails');
-app.use('/courseDetails', courseDetailsRouter);
 
-// app.listen(3000, () => console.log('DataBase connected and Server Started'))
-
-const userDetailsRouter = require('./routes/userDetails');
+const userDetailsRouter = require('userDetails');
 app.use('/userDetails', userDetailsRouter);
 
 // mongoose and mongo sandbox routes
