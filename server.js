@@ -9,14 +9,13 @@ mongoose.set('useUnifiedTopology', true);
 const dbURI = 'mongodb+srv://DadKid:6zUdIePh2hp0rIdu@cluster0.32o67.mongodb.net/DevOps_HomeWork?retryWrites=true&w=majority';
 mongoose.connect(dbURI)
     .then (() => app.listen(8080, () => console.log('DataBase connected and Server Started')))
-    // .then ((result) => console.log('DataBase connected')) // use this line to test whether is it connected to db before join app.listen together.
     .catch ((err) => console.log(err));
 
 app.use(express.json());
 
 
-/* const userDetailsRouter = require('userDetails');
-app.use('/userDetails', userDetailsRouter); */
+const userDetailsRouter = require('/userDetails');
+app.use('/userDetails', userDetailsRouter);
 
 // mongoose and mongo sandbox routes
 /* const UserDetail = require('./models/userDetail');
@@ -36,7 +35,7 @@ app.use('/userDetails', userDetailsRouter); */
         });
 }); */
 
-const UserDetail = require('userDetail');
+const UserDetail = require('/userDetail');
 app.get('/all-user', (req, res) =>{
     UserDetail.find() 
         .then ((result) => {
