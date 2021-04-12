@@ -12,6 +12,8 @@ mongoose.connect(dbURI)
 
 app.use(express.json());
 
+const userDetailsRouter = require('./userDetails');
+app.use('/userDetails', userDetailsRouter);
 
 app.get('/add-user', (req, res) => {
     const userDetail = new UserDetail  ({
