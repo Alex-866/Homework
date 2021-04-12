@@ -15,10 +15,10 @@ jobs:
       uses: actions/checkout@main
 
     # Setup gcloud CLI
-    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
+    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
       with:
-        service_account_email: ${{ secrets.GCP_EMAIL }}
-        service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+        service_account_email: ${{ secrets.GKE_EMAIL }}
+        service_account_key: ${{ secrets.GKE_KEY }}
         export_default_credentials: true
 
     # Configure Docker with Credentials
@@ -28,13 +28,13 @@ jobs:
     # Build the Docker image
     - name: Build & Publish
       run: |
-        gcloud config set project ${{ secrets.GCP_PROJECT }}
-        gcloud builds submit --tag gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }}
+        gcloud config set project ${{ secrets.GKE_PROJECT }}
+        gcloud builds submit --tag gcr.io/${{ secrets.GKE_PROJECT }}/${{ secrets.GKE_APPLICATION }}
         gcloud config set run/region us-central1
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
-        gcloud run deploy ${{ secrets.GCP_APPLICATION }} --image gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }} \
+        gcloud run deploy ${{ secrets.GKE_APPLICATION }} --image gcr.io/${{ secrets.GKE_PROJECT }}/${{ secrets.GKE_APPLICATION }} \
         --platform managed \
         --allow-unauthenticated \
         --memory 256M
