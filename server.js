@@ -14,22 +14,6 @@ app.use(express.json());
 const userDetailsRouter = require('./userDetails');
 app.use('/userDetails', userDetailsRouter);
 
-app.get('/add-user', (req, res) => {
-    const userDetail = new UserDetail  ({
-        name: "Mong",
-        ic_number: "S22558885E",
-        email: "janewong@gmail.com",
-        mobile: "852653265"
-});
-    
-    userDetail.save()
-        .then ((result) => {
-            res.send(result);
-        })
-        .catch ((err) => {
-            console.log(err);
-        });
-});
 
 const UserDetail = require('./userDetail');
 app.get('/all-user', (req, res) =>{
