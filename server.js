@@ -6,9 +6,7 @@ app.listen(27017, () => {
     console.log('Server Started');
 });
 
-app.use(express.json());
-
-app.get('/', (req, res) => {
+app.get('/alluser', (req, res) => {
     db.userone.find().pretty() 
         res.send (result);
     });
