@@ -14,7 +14,7 @@ app.use(express.json());
 
 
 app.get('/add-user', (req, res) => {
-    res.json ({
+    const userDetail = new UserDetail  ({
         name: "Mong",
         ic_number: "S22558885E",
         email: "janewong@gmail.com",
