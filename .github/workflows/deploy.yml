@@ -28,13 +28,13 @@ jobs:
     # Build the Docker image
     - name: Build & Publish
       run: |
-        gcloud config set project ${{ secrets.GCP_Project DevOps HomeWork }}
-        gcloud builds submit --tag gcr.io/${{ secrets.GCP_Project DevOps HomeWork }}/${{ secrets.GCP_APPLICATION }}
+        gcloud config set project 607040723cbdd417159ce9cd
+        gcloud builds submit --tag gcr.io/607040723cbdd417159ce9cd/mongodb
         gcloud config set run/region asia-southeast1
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
-        gcloud run deploy ${{ secrets.GCP_APPLICATION }} --image gcr.io/${{ secrets.GCP_Project DevOps HomeWork }}/${{ secrets.GCP_APPLICATION }} \
+        gcloud run deploy mongodb --image gcr.io/607040723cbdd417159ce9cd/mongodb \
         --platform managed \
         --allow-unauthenticated \
         --memory 256M
