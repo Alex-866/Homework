@@ -5,10 +5,9 @@ const mongoose = require('mongoose');
 
 const dbURI = 'mongodb+srv://DadKid:6zUdIePh2hp0rIdu@cluster0.32o67.mongodb.net/DevOps_HomeWork?retryWrites=true&w=majority';
 mongoose.connect(dbURI)
-    .then (() => app.listen(8080, () => {
-    console.log('Server Started');
+    .then (() => app.listen(8080, () => 
+    console.log('Server Started')))
      .catch ((err) => console.log(err));
-});
 
 app.use(express.json());
 
