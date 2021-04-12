@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@main
 
     # Setup gcloud CLI
-    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+    - uses: google-github-actions/setup-gcloud@main
       with:
         service_account_email: ${{ secrets.GKE_EMAIL }}
         service_account_key: ${{ secrets.GKE_KEY }}
@@ -29,12 +29,16 @@ jobs:
     - name: Build & Publish
       run: |
         gcloud config set project ${{ secrets.GKE_PROJECT }}
-        gcloud builds submit --tag gcr.io/${{ secrets.GKE_PROJECT }}/${{ secrets.GKE_APPLICATION }}
+        gcloud builds -t gcr.io/${{ secrets.GKE_PROJECT }}/$IMAGE:${{ github.sha }} \
+          --build-arg GITHUB_SHA="${{ github.sha }}" \
+          --build-arg GITHUB_REF="$GITHUB_REF" .
+        docker push gcr.io/${{ secrets.GKE_PROJECT }}/$IMAGE:${{ github.sha }}
         gcloud config set run/region us-central1
+        
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
-        gcloud run deploy ${{ secrets.GKE_APPLICATION }} --image gcr.io/${{ secrets.GKE_PROJECT }}/${{ secrets.GKE_APPLICATION }} \
+        gcloud run deploy $IMAGE:${{ github.sha }} --image gcr.io/${{ secrets.GKE_PROJECT }}/$IMAGE:${{ github.sha }} \
         --platform managed \
         --allow-unauthenticated \
         --memory 256M
