@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require ('mongoose');
-const connectionString = 'mongodb88://mongo:27017/userone';
+const connectionString = 'mongodb://mongo:27017/mongodb88';
 
 mongoose
     .connect(connectionString, {useNewUrlParser: true })
